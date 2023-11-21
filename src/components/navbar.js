@@ -2,12 +2,11 @@ import "./NavbarStyles.css";
 
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaBars, FaTimes } from "react-icons/fa";
 
-const Navbar = () => {
+const Navbar = (props) => {
   //   STATES
   const [click, setClick] = useState(false);
-  const handleClick = () => setClick(!click);
+  console.log(props);
 
   const [color, setColor] = useState(false);
   const changeColor = () => {
@@ -22,34 +21,35 @@ const Navbar = () => {
 
   return (
     <div className={color ? "header header-bg" : "header"}>
-      <Link to="/">
-        <h1>Yeshas Nath</h1>
+      <Link to="/home">
+        <h3>CraftMarket</h3>
       </Link>
       <ul className={click ? "nav-menu active" : "nav-menu"}>
         <li>
-          <Link className="hoverable" to="/">
+          <Link className="hoverable" to="/home">
             Home
           </Link>
         </li>
         <li>
-          <Link to="/about">About</Link>
+          <Link to="/add-product" state={{ data: props.userPhone }}>
+            Add Product
+          </Link>
         </li>
         <li>
-          <Link to="/projects">Projects</Link>
+          <Link to="/manage-items" state={{ data: props.userPhone }}>
+            Manage Items
+          </Link>
+        </li>
+        <li>
+          <Link to="/projects">Edit Profile</Link>
+        </li>
+        <li>
+          <Link to="/sign-in">Log Out</Link>
         </li>
         {/* <li>
                 <Link to="/contact">Contact</Link>
             </li> */}
       </ul>
-
-      <div className="hamburger" onClick={handleClick}>
-        {/* if else statement, if clicked, show close icon, if not show menu icon */}
-        {click ? (
-          <FaTimes size={20} style={{ color: "fff" }} />
-        ) : (
-          <FaBars size={20} style={{ color: "fff" }} />
-        )}
-      </div>
     </div>
   );
 };
