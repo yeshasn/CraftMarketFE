@@ -64,6 +64,10 @@ export default class UpdateUser extends Component{
           .then((data) => {
             console.log(data, "UpdateUser");
           });
+
+          window.location.href = "./home";
+            
+          
           
       }
 
