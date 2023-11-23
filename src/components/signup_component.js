@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./SignUp.css";
 
 export default class SignUp extends Component {
   constructor(props) {
@@ -35,55 +36,64 @@ export default class SignUp extends Component {
         console.log(data, "userRegister");
       });
   }
+
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <h3>Sign Up</h3>
+      <div className="signup-container">
+        <div className="signup-form">
+          <form onSubmit={this.handleSubmit}>
+            <h3 className="signup-heading">Sign Up</h3>
+            <div className="form-group">
+              <label htmlFor="name" className="form-label">
+                Name
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="name"
+                placeholder="First Last"
+                onChange={(e) => this.setState({ name: e.target.value })}
+              />
+            </div>
 
-        <div className="mb-3">
-          <label>Name</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="First Last"
-            onChange={(e) => this.setState({ name: e.target.value })}
-          />
+            <div className="form-group">
+              <label htmlFor="phone" className="form-label">
+                Phone Number
+              </label>
+              <input
+                type="text"
+                className="form-control"
+                id="phone"
+                placeholder="1234567890"
+                onChange={(e) => this.setState({ phone: e.target.value })}
+              />
+            </div>
+
+            <div className="form-group">
+              <label htmlFor="password" className="form-label">
+                Create Password
+              </label>
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                placeholder=""
+                onChange={(e) => this.setState({ pwd: e.target.value })}
+              />
+            </div>
+
+            <div className="form-group">
+              <button type="submit" className="submit-btn">
+                Sign Up
+              </button>
+            </div>
+
+            <p className="login-link">
+              Already registered? <a href="/sign-in">Sign back in</a>
+            </p>
+          </form>
         </div>
-
-        <div className="mb-3">
-          <label>Phone Number</label>
-          <input
-            type="text"
-            className="form-control"
-            placeholder="1234567890"
-            onChange={(e) => this.setState({ phone: e.target.value })}
-          />
-        </div>
-
-        <div className="mb-3">
-          <label>Create Password</label>
-          <input
-            type="password"
-            className="form-control"
-            placeholder=""
-            onChange={(e) => this.setState({ pwd: e.target.value })}
-          />
-        </div>
-
-        {/* <div className="mb-3">
-          <label>Confirm Password</label>
-          <input type="password" className="form-control" placeholder="" />
-        </div> */}
-
-        <div className="d-grid">
-          <button type="submit" className="btn btn-primary">
-            Sign Up
-          </button>
-        </div>
-        <p className="forgot-password text-right">
-          Already registered? <a href="/sign-in">Sign back in</a>
-        </p>
-      </form>
+      </div>
     );
   }
 }
